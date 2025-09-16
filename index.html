@@ -1,0 +1,177 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🚀 Prompt Blaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #182848;
+            --mid-blue: #4b6cb7;
+            --light-bg: #e0eafc;
+            --text-color: #ffffff;
+            --button-color: #ff5722;
+            --button-hover: #e64a19;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --warning-bg: rgba(255, 235, 59, 0.8);
+            --warning-text: #333;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            /* Subtle texture filter */
+            filter: url(#grainy);
+        }
+
+        .card {
+            background: linear-gradient(145deg, var(--mid-blue), var(--dark-blue));
+            border-radius: 25px;
+            box-shadow: 0 15px 40px var(--shadow-color);
+            padding: 50px;
+            text-align: center;
+            color: var(--text-color);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        /* Inner glowing border effect */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        #launchBtn {
+            padding: 20px 45px;
+            font-size: 1.4em;
+            font-weight: 700;
+            background-color: var(--button-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #launchBtn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+        }
+
+        #launchBtn:active {
+            transform: translateY(0);
+        }
+        
+        #launchBtn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .warning-message {
+            display: none;
+            margin-top: 30px;
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+<svg style="position: fixed; top: -100px; left: -100px; width: 1px; height: 1px;">
+    <filter id="grainy">
+        <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise" />
+        <feColorMatrix type="saturate" values="0" />
+        <feComposite operator="in" in="noise" in2="SourceGraphic" result="monochromeNoise" />
+        <feBlend in="SourceGraphic" in2="monochromeNoise" mode="multiply" />
+    </filter>
+</svg>
+
+<div class="card">
+    <h1>Prompt Blaster</h1>
+    <p class="tagline">Launch all your GSA prompts with a single click!</p>
+    
+    <button id="launchBtn">🚀 Launch All Prompts</button>
+
+    <div id="warning" class="warning-message">
+        ⚠️ **Pop-up Blocker Active!** Please enable pop-ups for this site and click again.
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const launchBtn = document.getElementById('launchBtn');
+    const warning = document.getElementById('warning');
+
+    const urls = [
+        "https://aiskillshouse.com/student/qr-mediator.html?uid=5560&promptId=16",
+        "https://aiskillshouse.com/student/qr-mediator.html?uid=5560&promptId=15",
+        "https://aiskillshouse.com/student/qr-mediator.html?uid=5560&promptId=14",
+        "https://aiskillshouse.com/student/qr-mediator.html?uid=5560&promptId=13",
+        "https://aiskillshouse.com/student/qr-mediator.html?uid=5560&promptId=6",
+    ];
+
+    launchBtn.addEventListener('click', () => {
+        let popupsBlocked = false;
+        
+        for (const url of urls) {
+            const newWindow = window.open(url, '_blank');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                popupsBlocked = true;
+                break;
+            }
+        }
+
+        if (popupsBlocked) {
+            warning.style.display = 'block';
+        } else {
+            warning.style.display = 'none';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+a
